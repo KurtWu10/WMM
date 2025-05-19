@@ -1,0 +1,24 @@
+AArch64 MP.FR+dmb+fpo-fe
+{
+  0:X0 = 1;
+  0:X1 = x;
+  0:X2 = instr:"B .+4"; (* "B l1" *)
+  0:X3 = P1:f;
+  1:X2 = x;
+}
+
+ P0           | P1              ;
+ STR X0, [X1] | BL f            ;
+ DMB ISH      | MOV X0, X10     ;
+ STR W2, [X3] | LDR X1, [X2]    ;
+              | BL end          ;
+              |                 ;
+              | f: B l0         ;
+              | l1: MOV X10, #2 ;
+              |     RET         ;
+              | l0: MOV X10, #1 ;
+              |     RET         ;
+              | end:            ;
+
+forall (~(1:X0 = 2 /\ 1:X1 = 0))
+

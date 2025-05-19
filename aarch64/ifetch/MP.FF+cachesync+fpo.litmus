@@ -1,0 +1,25 @@
+AArch64 MP.FF+cachesync+fpo
+{
+  0:X0 = instr:"B .+8"; (* "B l1" *)
+  0:X1 = P1:f1;
+  0:X2 = instr:"B .+4"; (* "B l1" *)
+  0:X3 = P1:f2;
+}
+
+ P0           | P1              ;
+ STR W0, [X1] | BL f2           ;
+ DC CVAU, X1  | MOV X0, X10     ;
+ DSB ISH      | BL f1           ;
+ IC IVAU, X1  | MOV X1, X10     ;
+ DSB ISH      | BL end          ;
+ STR W2, [X3] |                 ;
+              | f1: B l0        ;
+              | f2: B l0        ;
+              | l1: MOV X10, #2 ;
+              |     RET         ;
+              | l0: MOV X10, #1 ;
+              |     RET         ;
+              | end:            ;
+
+forall (~(1:X0 = 2 /\ 1:X1 = 1))
+

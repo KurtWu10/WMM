@@ -1,0 +1,22 @@
+AArch64 CoFF
+{
+  0:X0 = instr:"B .+4"; (* "B l1" *)
+  0:X1 = P1:f;
+}
+
+ P0           | P1              ;
+ STR W0, [X1] | BL f            ;
+              | MOV X0, X10     ;
+              | BL f            ;
+              | MOV X1, X10     ;
+              | BL end          ;
+              |                 ;
+              | f: B l0         ;
+              | l1: MOV X10, #2 ;
+              |     RET         ;
+              | l0: MOV X10, #1 ;
+              |     RET         ;
+              | end:            ;
+
+exists (1:X0 = 2 /\ 1:X1 = 1)
+

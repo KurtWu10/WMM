@@ -1,0 +1,30 @@
+AArch64 ISA2.F+dc-dmb+dsb-ic-dsb+ctrl-isb
+{
+  0:X0 = instr:"B .+4"; (* "B l1" *)
+  0:X1 = P2:f;
+  0:X2 = 1;
+  0:X3 = x;
+  1:X1 = x;
+  1:X2 = 1;
+  1:X3 = y;
+  1:X4 = P2:f;
+  2:X2 = y;
+}
+
+ P0           | P1           | P2              ;
+ STR W0, [X1] | LDR X0, [X1] | LDR X0, [X2]    ;
+ DC CVAU, X1  | DSB ISH      | CBZ X0, l       ;
+ DMB SY       | IC IVAU, X4  | l: ISB          ;
+ STR X2, [X3] | DSB ISH      | BL f            ;
+              | STR X2, [X3] | MOV X1, X10     ;
+              |              | BL end          ;
+              |              |                 ;
+              |              | f: B l0         ;
+              |              | l1: MOV X10, #2 ;
+              |              |     RET         ;
+              |              | l0: MOV X10, #1 ;
+              |              |     RET         ;
+              |              | end:            ;
+
+forall (~(1: X0 = 1 /\ 2:X0 = 1 /\ 2:X1 = 1))
+

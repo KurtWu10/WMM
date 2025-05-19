@@ -1,0 +1,21 @@
+AArch64 SM
+{
+  0:X0 = instr:"B .+4"; (* "B l1" *)
+  0:X1 = P0:f;
+}
+
+P0              ;
+STR W0, [X1]    ;
+BL f            ;
+MOV X2, X10     ;
+BL end          ;
+                ;
+f: B l0         ;
+l1: MOV X10, #2 ;
+    RET         ;
+l0: MOV X10, #1 ;
+    RET         ;
+end:            ;
+
+exists (0:X2 = 1)
+

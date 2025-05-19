@@ -1,0 +1,19 @@
+AArch64 MP+dmb+addr-dc
+{
+  0:X0 = 1;
+  0:X1 = x;
+  0:X2 = 1;
+  0:X3 = y;
+  1:X1 = y;
+  1:X3 = x;
+}
+
+ P0           | P1              ;
+ STR X0, [X1] | LDR X0, [X1]    ;
+ DSB SY       | EOR X5, X0, X0  ;
+ STR X2, [X3] | ADD X5, X5, X3  ;
+              | DC CVAU, X5     ;
+              | LDR X2, [X3]    ;
+
+forall (~(1:X0 = 1 /\ 1:X2 = 0))
+
