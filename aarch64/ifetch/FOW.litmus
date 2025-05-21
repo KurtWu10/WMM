@@ -1,0 +1,27 @@
+AArch64 FOW
+{
+  0:X0 = instr:"B .+12"; (* "B l1" *)
+  0:X1 = instr:"B .+4"; (* "B l2" *)
+  0:X2 = P3:g;
+  0:X3 = 1;
+  0:X4 = x;
+  1:X4 = x;
+  1:X5 = P3:g;
+  2:X4 = x;
+  2:X5 = P3:g;
+}
+
+ P0           | P1           | P2           | P3              ;
+ STR W0, [X2] | LDR X0, [X4] | LDR X0, [X4] | B end           ;
+ STR W1, [X2] | CBNZ X0, la  | CBNZ X0, lb  |                 ;
+ DSB ISH      | la: ISB      | lb: ISB      | g: B l0         ;
+ IC IVAU, X2  | BLR X5       | BLR X5       | l2: MOV X10, #3 ;
+ DSB ISH      | MOV X1, X10  | MOV X1, X10  |     RET         ;
+ STR X3, [X4] |              |              | l1: MOV X10, #2 ;
+              |              |              |     RET         ;
+              |              |              | l0: MOV X10, #1 ;
+              |              |              |     RET         ;
+              |              |              | end:            ;
+
+exists (1:X0 = 1 /\ 1:X1 = 2 /\ 2:X0 = 1 /\ 2:X1 = 1)
+

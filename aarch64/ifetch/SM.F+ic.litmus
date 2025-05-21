@@ -1,0 +1,22 @@
+AArch64 SM.F+ic
+{
+  0:X0 = instr:"B .+4"; (* "B l1" *)
+  0:X3 = x;
+  0:X4 = P2:f;
+  1:X2 = 1;
+  1:X3 = x;
+  1:X4 = P2:f;
+}
+
+ P0           | P1           | P2              ;
+ STR W0, [X4] | BLR X4       | B end           ;
+ LDR X2, [X3] | MOV X0, X10  |                 ;
+ CBZ X2, l    | IC IVAU, X4  | f: B l0         ;
+ l: ISB       | DSB ISH      | l1: MOV X10, #2 ;
+ BLR X4       | STR X2, [X3] |     RET         ;
+ MOV X1, X10  |              | l0: MOV X10, #1 ;
+              |              |     RET         ;
+              |              | end:            ;
+
+exists (0:X1 = 1 /\ 0:X2 = 1 /\ 1:X0 = 2)
+
