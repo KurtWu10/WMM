@@ -9,7 +9,7 @@ AArch64 CoFR
  STR W0, [X1] | BL f            ;
               | MOV X0, X10     ;
               | LDR W1, [X2]    ;
-              | BL end          ;
+              | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

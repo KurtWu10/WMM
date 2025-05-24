@@ -11,7 +11,7 @@ AArch64 MP.FR+dmb+fpo-fe
  STR X0, [X1] | BL f            ;
  DMB ISH      | MOV X0, X10     ;
  STR W2, [X3] | LDR X1, [X2]    ;
-              | BL end          ;
+              | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

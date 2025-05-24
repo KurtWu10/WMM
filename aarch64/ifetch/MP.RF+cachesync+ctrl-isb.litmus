@@ -13,7 +13,7 @@ AArch64 MP.RF+cachesync+ctrl-isb
  DSB ISH      | l: ISB          ;
  IC IVAU, X1  | BL f            ;
  DSB ISH      | MOV X1, X10     ;
- STR X2, [X3] | BL end          ;
+ STR X2, [X3] | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

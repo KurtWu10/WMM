@@ -17,7 +17,7 @@ AArch64 ISA2.F+dc-dmb+dsb-ic-dsb+ctrl-isb
  DMB SY       | IC IVAU, X4  | l: ISB          ;
  STR X2, [X3] | DSB ISH      | BL f            ;
               | STR X2, [X3] | MOV X1, X10     ;
-              |              | BL end          ;
+              |              | B end           ;
               |              |                 ;
               |              | f: B l0         ;
               |              | l1: MOV X10, #2 ;

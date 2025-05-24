@@ -11,7 +11,7 @@ AArch64 MP.FF+cachesync+fpo
  DC CVAU, X1  | MOV X0, X10     ;
  DSB ISH      | BL f1           ;
  IC IVAU, X1  | MOV X1, X10     ;
- DSB ISH      | BL end          ;
+ DSB ISH      | B end           ;
  STR W2, [X3] |                 ;
               | f1: B l0        ;
               | f2: B l0        ;

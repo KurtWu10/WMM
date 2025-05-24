@@ -20,7 +20,7 @@ AArch64 MP.RFF+dc-dsb+ctrl-isb-isb
               | ISB             ;
               | BL g            ;
               | MOV X3, X10     ;
-              | BL end          ;
+              | B end           ;
               |                 ;
               | g: B l0         ;
               | l2: MOV X10, #3 ;

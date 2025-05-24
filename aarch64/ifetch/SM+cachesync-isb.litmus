@@ -13,7 +13,7 @@ DSB ISH         ;
 ISB             ;
 BL f            ;
 MOV X2, X10     ;
-BL end          ;
+B end           ;
                 ;
 f: B l0         ;
 l1: MOV X10, #2 ;

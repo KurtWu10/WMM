@@ -13,7 +13,7 @@ AArch64 MP.RF+dmb+ctrl-isb
  STR X2, [X3] | l: ISB          ;
               | BL f            ;
               | MOV X1, X10     ;
-              | BL end          ;
+              | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

@@ -20,7 +20,7 @@ AArch64 MP.RRF+dmb+addr-cachesync-isb
               | ISB              ;
               | BL f             ;
               | MOV X6, X10      ;
-              | BL end           ;
+              | B end            ;
               |                  ;
               | f: B l0          ;
               | l1: MOV X10, #2  ;

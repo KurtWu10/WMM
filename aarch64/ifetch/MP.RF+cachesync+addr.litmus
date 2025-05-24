@@ -14,7 +14,7 @@ AArch64 MP.RF+cachesync+addr
  DSB ISH      | ADD X2, X2, X3  ;
  IC IVAU, X1  | BLR X2          ;
  DSB ISH      | MOV X1, X10     ;
- STR X2, [X3] | BL end          ;
+ STR X2, [X3] | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

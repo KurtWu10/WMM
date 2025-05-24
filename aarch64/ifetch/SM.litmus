@@ -8,7 +8,7 @@ P0              ;
 STR W0, [X1]    ;
 BL f            ;
 MOV X2, X10     ;
-BL end          ;
+B end           ;
                 ;
 f: B l0         ;
 l1: MOV X10, #2 ;

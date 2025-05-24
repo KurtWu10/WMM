@@ -13,7 +13,7 @@ AArch64 CoRF+cachesync-isb
               | DSB ISH         ;
               | ISB             ;
               | BL f            ;
-              | BL end          ;
+              | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

@@ -11,7 +11,7 @@ AArch64 CoRF+ctrl-isb
               | l: ISB          ;
               | BL f            ;
               | MOV X1, X10     ;
-              | BL end          ;
+              | B end           ;
               |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

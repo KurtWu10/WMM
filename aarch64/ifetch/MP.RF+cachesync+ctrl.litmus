@@ -12,7 +12,7 @@ AArch64 MP.RF+cachesync+ctrl
  DC CVAU, X1  | CBNZ X0, l      ;
  DSB ISH      | l: BL f         ;
  IC IVAU, X1  | MOV X1, X10     ;
- DSB ISH      | BL end          ;
+ DSB ISH      | B end           ;
  STR X2, [X3] |                 ;
               | f: B l0         ;
               | l1: MOV X10, #2 ;

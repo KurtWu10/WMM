@@ -18,7 +18,7 @@ AArch64 MP.R.RF+addr-cachesync+dmb+ctrl-isb
  EOR X4, X0, X0 | DMB SY       | l: ISB          ;
  ADD X4, X4, X3 | STR X3, [X4] | BL g            ;
  DC CVAU, X4    |              | MOV X1, X10     ;
- DSB ISH        |              | BL end          ;
+ DSB ISH        |              | B end           ;
  IC IVAU, X4    |              |                 ;
  DSB ISH        |              | g: B l0         ;
  STR X5, [X6]   |              | l2: MOV X10, #3 ;

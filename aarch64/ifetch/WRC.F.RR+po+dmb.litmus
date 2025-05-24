@@ -12,7 +12,7 @@ AArch64 WRC.F.RR+po+dmb
  STR W0, [X1] | BL f            | LDR X0, [X1] ;
               | MOV X0, X10     | DMB SY       ;
               | STR X1, [X2]    | LDR W2, [X3] ;
-              | BL end          |              ;
+              | B end           |              ;
               |                 |              ;
               | f: B l0         |              ;
               | l1: MOV X10, #2 |              ;
