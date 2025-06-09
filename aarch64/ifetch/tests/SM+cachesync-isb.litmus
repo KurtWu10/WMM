@@ -22,5 +22,5 @@ l0: MOV X10, #1 ;
     RET         ;
 end:            ;
 
-forall (~(0:X2 = 1))
+~exists (0:X2 = 1)
 

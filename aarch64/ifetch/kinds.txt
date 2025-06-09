@@ -1,0 +1,22 @@
+CoFF                                Allowed
+CoFR                                Forbidden
+CoRF+cachesync-isb                  Forbidden
+CoRF+ctrl-isb                       Allowed
+FOW                                 Allowed
+ISA2.F+dc-dmb+dsb-ic-dsb+ctrl-isb   Forbidden
+MP.FF+cachesync+fpo                 Forbidden
+MP.FF+dmb+fpo                       Allowed
+MP.FR+dmb+fpo-fe                    Forbidden
+MP.R.RF+addr-cachesync+dmb+ctrl-isb Forbidden
+MP.RF+cachesync+addr                Allowed
+MP.RF+cachesync+ctrl                Allowed
+MP.RF+cachesync+ctrl-isb            Forbidden
+MP.RF+dmb+ctrl-isb                  Allowed
+MP.RFF+dc-dsb+ctrl-isb-isb          Allowed
+MP.RRF+dmb+addr-cachesync-isb       Allowed
+MP+dmb+addr-dc                      Allowed
+SM.F+ic                             Allowed
+SM                                  Allowed
+SM+cachesync-isb                    Forbidden
+WRC.F.RR+po+dmb                     Forbidden
+

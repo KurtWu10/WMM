@@ -29,5 +29,5 @@ AArch64 MP.R.RF+addr-cachesync+dmb+ctrl-isb
                 |              |     RET         ;
                 |              | end:            ;
 
-forall (~(0: X0 = 1 /\ 1:X0 = instr:"B .+12" /\ 2:X0 = 1 /\ 2:X1 = 2)) (* "B l1" *)
+~exists (0: X0 = 1 /\ 1:X0 = instr:"B .+12" /\ 2:X0 = 1 /\ 2:X1 = 2) (* "B l1" *)
 

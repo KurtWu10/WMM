@@ -26,5 +26,5 @@ AArch64 ISA2.F+dc-dmb+dsb-ic-dsb+ctrl-isb
               |              |     RET         ;
               |              | end:            ;
 
-forall (~(1: X0 = 1 /\ 2:X0 = 1 /\ 2:X1 = 1))
+~exists (1: X0 = 1 /\ 2:X0 = 1 /\ 2:X1 = 1)
 

@@ -22,5 +22,5 @@ AArch64 MP.RF+cachesync+ctrl-isb
               |     RET         ;
               | end:            ;
 
-forall (~(1:X0 = 1 /\ 1:X1 = 1))
+~exists (1:X0 = 1 /\ 1:X1 = 1)
 

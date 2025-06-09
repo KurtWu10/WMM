@@ -21,7 +21,5 @@ AArch64 WRC.F.RR+po+dmb
               |     RET         |              ;
               | end:            |              ;
 
-(* 1:X0 = 2 implies that a -{irf}->b *)
-(* 2:X0 = 1 implies that c -{rf}-> d *)
-forall (~(1:X0 = 2 /\ 2:X0 = 1 /\ 2:X2 = instr:"B .+12")) (* "B l0" *)
+~exists (1:X0 = 2 /\ 2:X0 = 1 /\ 2:X2 = instr:"B .+12") (* "B l0" *)
 
