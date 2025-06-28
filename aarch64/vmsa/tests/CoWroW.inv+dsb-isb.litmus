@@ -1,0 +1,19 @@
+AArch64 CoWroW.inv+dsb-isb
+{
+  pa1 = 0;
+  [PTE(x)] = (valid:0);
+  0:X0 = (oa:PA(pa1), db:0);
+  0:X1 = PTE(x);
+  0:X2 = 1;
+  0:X3 = x;
+}
+
+ P0           | P0.F             ;
+ STR X0, [X1] | ADR X20, L0      ;
+ DSB SY       | MSR ELR_EL1, X20 ;
+ ISB          | ERET             ;
+ STR X2, [X3] |                  ;
+ L0:          |                  ;
+
+~exists (pa1 = 1)
+

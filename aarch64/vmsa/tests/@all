@@ -9,6 +9,7 @@ CoWinvT.EL1+tlbi-dsb-isb.litmus
 CoWinvT+dsb-isb.litmus
 CoWinvT+po.litmus
 CoWR.alias.litmus
+CoWroW.inv+dsb-isb.litmus
 CoWTf.inv+dmb.litmus
 CoWTf.inv+dsb-isb.litmus
 CoWTf.inv+po.litmus
@@ -23,6 +24,7 @@ MP+alias3+rfi-data+dmb.litmus
 PPOCA.alias.litmus
 R.TR.inv+dmb+trfi.litmus
 RBS+dsb-tlbiis-dsb.litmus
+RMD+dmb.litmus
 WRC.RRTf.inv+dmb+dsb-isb.litmus
 WRC.TRR.inv+po+dsb.litmus
 WRC.TRTf.inv+po+dsb-isb.litmus

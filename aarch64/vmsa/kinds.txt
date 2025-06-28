@@ -8,6 +8,7 @@ CoWinvT.EL1+dsb-tlbi-dsb-isb     Forbidden
 CoWinvT.EL1+tlbi-dsb-isb         Allowed
 CoWinvT+dsb-isb                  Allowed
 CoWinvT+po                       Allowed
+CoWroW.inv+dsb-isb               Forbidden
 CoWR.alias                       Forbidden
 CoWTf.inv+dmb                    Allowed
 CoWTf.inv+dsb-isb                Forbidden
@@ -23,6 +24,7 @@ MP+alias3+rfi-data+dmb           Allowed
 PPOCA.alias                      Allowed
 R.TR.inv+dmb+trfi                Forbidden # !!!
 RBS+dsb-tlbiis-dsb               Forbidden
+RMD+dmb                          Forbidden
 WRC.RRTf.inv+dmb+dsb-isb         Forbidden
 WRC.TRR.inv+po+dsb               Forbidden
 WRC.TRTf.inv+po+dsb-isb          Forbidden
