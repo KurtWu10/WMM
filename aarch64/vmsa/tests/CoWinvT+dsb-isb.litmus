@@ -1,0 +1,18 @@
+AArch64 CoWinvT+dsb-isb
+{
+  pa1 = 0;
+  [PTE(x)] = (oa:PA(pa1));
+  0:X0 = (valid:0);
+  0:X1 = PTE(x);
+  0:X3 = x;
+}
+
+ P0           | P0.F             ;
+ STR X0, [X1] | MOV X2, #1       ;
+ DSB SY       | ADR X20, L0      ;
+ ISB          | MSR ELR_EL1, X20 ;
+ LDR X2, [X3] | ERET             ;
+ L0:          |                  ;
+
+exists (0:X2 = 0)
+

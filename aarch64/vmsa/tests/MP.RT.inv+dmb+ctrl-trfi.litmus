@@ -1,0 +1,27 @@
+AArch64 MP.RT.inv+dmb+ctrl-trfi
+{
+  pa1 = 0;
+  pa2 = 0;
+  [PTE(w)] = (valid:0);
+  [PTE(x)] = (oa:PA(pa1));
+  [PTE(y)] = (oa:PA(pa2));
+  0:X0 = 1;
+  0:X1 = x;
+  0:X2 = 1;
+  0:X3 = y;
+  1:X1 = y;
+  1:X2 = (oa:PA(pa1));
+  1:X3 = PTE(w);
+  1:X5 = w;
+}
+
+ P0           | P1           | P1.F             ;
+ STR X0, [X1] | LDR X0, [X1] | MOV X4, #2       ;
+ DMB SY       | CBZ X0, LC00 | ADR X13, L0      ;
+ STR X2, [X3] | LC00:        | MSR ELR_EL1, X13 ;
+              | STR X2, [X3] | ERET             ;
+              | LDR X4, [X5] |                  ;
+              | L0:          |                  ;
+
+~exists (1:X0 = 1 /\ 1:X4 = 0)
+

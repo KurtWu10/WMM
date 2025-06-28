@@ -1,0 +1,18 @@
+AArch64 CoTW1.inv
+{
+  pa1 = 1;
+  [PTE(x)] = (valid:0);
+  [PTE(y)] = (oa:PA(pa1));
+  0:X1 = x;
+  0:X2 = (oa:PA(pa1));
+  0:X3 = PTE(x);
+}
+
+ P0           | P0.F             ;
+ LDR X2, [X3] | MOV X0, #0       ;
+ L0:          | ADR X13, L0      ;
+ STR X2, [X3] | MSR ELR_EL1, X13 ;
+              | ERET             ;
+
+~exists (0:X0 = 1)
+

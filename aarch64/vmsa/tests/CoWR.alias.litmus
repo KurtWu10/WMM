@@ -1,0 +1,16 @@
+AArch64 CoWR.alias
+{
+  pa1 = 0;
+  [PTE(x)] = (oa:PA(pa1));
+  [PTE(y)] = (oa:PA(pa1));
+  0:X0 = 1;
+  0:X1 = x;
+  0:X3 = y;
+}
+
+ P0           ;
+ STR X0, [X1] ;
+ LDR X2, [X3] ;
+
+~exists (0:X2 = 0)
+

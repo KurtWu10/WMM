@@ -1,0 +1,29 @@
+BBM+dsb-tlbiis-dsb               Allowed
+CoRpteTf.inv+addr                Forbidden
+CoRpteTf.inv+po                  Allowed
+CoRR0.alias+po                   Forbidden
+CoRR2.alias+po                   Forbidden
+CoTW1.inv                        Forbidden
+CoWinvT.EL1+dsb-tlbi-dsb-isb     Forbidden
+CoWinvT.EL1+tlbi-dsb-isb         Allowed
+CoWinvT+dsb-isb                  Allowed
+CoWinvT+po                       Allowed
+CoWR.alias                       Forbidden
+CoWTf.inv+dmb                    Allowed
+CoWTf.inv+dsb-isb                Forbidden
+CoWTf.inv+po                     Allowed
+LB.TT.inv+pos                    Forbidden
+MP.alias+pos                     Forbidden
+MP.RT.EL1+dsb-tlbiis-dsb+dsb-isb Forbidden
+MP.RT.inv+dmb+ctrl-trfi          Forbidden
+MP.RT.inv+poloc-dmb+ctrl-isb     Allowed
+MP.RTf.inv+dmb+ctrl              Allowed
+MP.RTf.inv+dmb+po                Allowed
+MP+alias3+rfi-data+dmb           Allowed
+PPOCA.alias                      Allowed
+R.TR.inv+dmb+trfi                Forbidden # !!!
+RBS+dsb-tlbiis-dsb               Forbidden
+WRC.RRTf.inv+dmb+dsb-isb         Forbidden
+WRC.TRR.inv+po+dsb               Forbidden
+WRC.TRTf.inv+po+dsb-isb          Forbidden
+

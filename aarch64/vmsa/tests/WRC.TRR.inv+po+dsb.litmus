@@ -1,0 +1,23 @@
+AArch64 WRC.TRR.inv+po+dsb
+{
+  pa1 = 1;
+  pa2 = 0;
+  [PTE(x)] = (valid:0);
+  [PTE(y)] = (oa:PA(pa2));
+  0:X0 = (oa:PA(pa1));
+  0:X1 = PTE(x);
+  1:X0 = 0;
+  1:X1 = x;
+  1:X2 = 1;
+  1:X3 = y;
+  2:X1 = y;
+  2:X3 = PTE(x);
+}
+
+ P0           | P1           | P2           | P1.F             ;
+ STR X0, [X1] | LDR X0, [X1] | LDR X0, [X1] | ADR X13, L0      ;
+              | L0:          | DSB SY       | MSR ELR_EL1, X13 ;
+              | STR X2, [X3] | LDR X2, [X3] | ERET             ;
+
+~exists (1:X0 = 1 /\ 2:X0 = 1 /\ 2:X2 = (oa:PA(x), valid:0))
+

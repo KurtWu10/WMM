@@ -1,0 +1,17 @@
+AArch64 CoWinvT+po
+{
+  pa1 = 0;
+  [PTE(x)] = (oa:PA(pa1));
+  0:X0 = (valid:0);
+  0:X1 = PTE(x);
+  0:X3 = x;
+}
+
+ P0           | P0.F             ;
+ STR X0, [X1] | MOV X2, #1       ;
+ LDR X2, [X3] | ADR X13, L0      ;
+ L0:          | MSR ELR_EL1, X13 ;
+              | ERET             ;
+
+exists (0:X2 = 0)
+

@@ -1,0 +1,18 @@
+AArch64 CoWTf.inv+dmb
+{
+  pa1 = 1;
+  [PTE(x)] = (valid:0);
+  [PTE(y)] = (oa:PA(pa1));
+  0:X0 = (oa:PA(pa1));
+  0:X1 = PTE(x);
+  0:X3 = x;
+}
+
+ P0           | P0.F             ;
+ STR X0, [X1] | MOV X2, #0       ;
+ DMB SY       | ADR X20, L0      ;
+ LDR X2, [X3] | MSR ELR_EL1, X20 ;
+ L0:          | ERET             ;
+
+exists (0:X2 = 0)
+

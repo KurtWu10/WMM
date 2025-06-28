@@ -1,0 +1,21 @@
+AArch64 LB.TT.inv+pos
+{
+  pa1 = 1;
+  [PTE(x)] = (valid:0);
+  [PTE(y)] = (valid:0);
+  0:X1 = x;
+  0:X2 = (oa:PA(pa1));
+  0:X3 = PTE(y);
+  1:X1 = y;
+  1:X2 = (oa:PA(pa1));
+  1:X3 = PTE(x);
+}
+
+ P0           | P1           | P0.F             | P1.F             ;
+ MOV X0, #0   | MOV X0, #0   | ADR X13, L0      | ADR X13, L1      ;
+ LDR X0, [X1] | LDR X0, [X1] | MSR ELR_EL1, X13 | MSR ELR_EL1, X13 ;
+ L0:          | L1:          | ERET             | ERET             ;
+ STR X2, [X3] | STR X2, [X3] |                  |                  ;
+
+~exists (0:X0 = 1 /\ 1:X0 = 1)
+

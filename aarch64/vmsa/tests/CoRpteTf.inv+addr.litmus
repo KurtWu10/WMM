@@ -1,0 +1,19 @@
+AArch64 CoRpteTf.inv+addr
+{
+  pa1 = 1;
+  [PTE(x)] = (valid:0);
+  [PTE(y)] = (oa:PA(pa1));
+  0:X0 = (oa:PA(pa1));
+  0:X1 = PTE(x);
+  1:X1 = PTE(x);
+  1:X3 = x;
+}
+
+ P0           | P1               | P1.F             ;
+ STR X0, [X1] | LDR X0, [X1]     | MOV X2, #0       ;
+              | EOR X4, X0, X0   | ADR X13, L0      ;
+              | LDR X2, [X3, X4] | MSR ELR_EL1, X13 ;
+              | L0:              | ERET             ;
+
+~exists (1:X0 = (oa:PA(pa1)) /\ 1:X2 = 0)
+

@@ -1,0 +1,25 @@
+AArch64 WRC.RRTf.inv+dmb+dsb-isb
+{
+  pa1 = 1;
+  pa2 = 0;
+  [PTE(x)] = (valid:0);
+  [PTE(y)] = (oa:PA(pa2));
+  [PTE(z)] = (oa:PA(pa1));
+  0:X0 = (oa:PA(pa1));
+  0:X1 = PTE(x);
+  1:X1 = PTE(x);
+  1:X2 = 1;
+  1:X3 = y;
+  2:X1 = y;
+  2:X3 = x;
+}
+
+ P0           | P1           | P2           | P2.F             ;
+ STR X0, [X1] | LDR X0, [X1] | LDR X0, [X1] | MOV X2, #0       ;
+              | DSB SY       | DSB SY       | ADR X13, L0      ;
+              | STR X2, [X3] | ISB          | MSR ELR_EL1, X13 ;
+              |              | LDR X2, [X3] | ERET             ;
+              |              | L0:          |                  ;
+
+~exists (1:X0 = (oa:PA(pa1)) /\ 2:X0 = 1 /\ 2:X2 = 0)
+
